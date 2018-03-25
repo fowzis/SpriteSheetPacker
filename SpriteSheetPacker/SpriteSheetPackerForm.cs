@@ -153,7 +153,7 @@ namespace SpriteSheetPacker
 			return false;
 		}
 
-		private void listBox1_DragEnter(object sender, DragEventArgs e)
+		private void ListBox1_DragEnter(object sender, DragEventArgs e)
 		{
 			// if this drag is not for a file drop, ignore it
 			if (!e.Data.GetDataPresent(DataFormats.FileDrop)) 
@@ -182,21 +182,21 @@ namespace SpriteSheetPacker
 			e.Effect = imageFound ? DragDropEffects.Copy : DragDropEffects.None;
 		}
 
-		private void listBox1_DragDrop(object sender, DragEventArgs e)
+		private void ListBox1_DragDrop(object sender, DragEventArgs e)
 		{
 			// add all the files dropped onto the list box
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 				AddFiles((string[])e.Data.GetData(DataFormats.FileDrop));
 		}
 
-		private void addImageBtn_Click(object sender, EventArgs e)
+		private void AddImageBtn_Click(object sender, EventArgs e)
 		{
 			// show our file dialog and add all the resulting files
 			if (imageOpenFileDialog.ShowDialog() == DialogResult.OK)
 				AddFiles(imageOpenFileDialog.FileNames);
 		}
 
-		private void removeImageBtn_Click(object sender, EventArgs e)
+		private void RemoveImageBtn_Click(object sender, EventArgs e)
 		{
 			// build a list of files to be removed
 			List<string> filesToRemove = new List<string>();
@@ -210,14 +210,14 @@ namespace SpriteSheetPacker
 			filesToRemove.ForEach(f => listBox1.Items.Remove(f));
 		}
 
-		private void clearBtn_Click(object sender, EventArgs e)
+		private void ClearBtn_Click(object sender, EventArgs e)
 		{
 			// clear both lists
 			files.Clear();
 			listBox1.Items.Clear();
 		}
 
-		private void browseImageBtn_Click(object sender, EventArgs e)
+		private void BrowseImageBtn_Click(object sender, EventArgs e)
 		{
 			// show the file dialog
 			imageSaveFileDialog.FileName = imageFileTxtBox.Text;
@@ -262,7 +262,7 @@ namespace SpriteSheetPacker
 			}
 		}
 
-		private void browseMapBtn_Click(object sender, EventArgs e)
+		private void BrowseMapBtn_Click(object sender, EventArgs e)
 		{
 			// show the file dialog
 			mapSaveFileDialog.FileName = mapFileTxtBox.Text;
@@ -285,7 +285,7 @@ namespace SpriteSheetPacker
 			}
 		}
 
-		private void buildBtn_Click(object sender, EventArgs e)
+		private void BuildBtn_Click(object sender, EventArgs e)
 		{
 			// check our parameters
 			if (files.Count == 0)
@@ -303,18 +303,17 @@ namespace SpriteSheetPacker
 				ShowBuildError("No text filename given.");
 				return;
 			}
-			int outputWidth, outputHeight, padding;
-			if (!int.TryParse(maxWidthTxtBox.Text, out outputWidth) || outputWidth < 1)
-			{
-				ShowBuildError("Maximum width is not a valid integer value greater than 0.");
-				return;
-			}
-			if (!int.TryParse(maxHeightTxtBox.Text, out outputHeight) || outputHeight < 1)
+            if (!int.TryParse(maxWidthTxtBox.Text, out int outputWidth) || outputWidth < 1)
+            {
+                ShowBuildError("Maximum width is not a valid integer value greater than 0.");
+                return;
+            }
+            if (!int.TryParse(maxHeightTxtBox.Text, out int outputHeight) || outputHeight < 1)
 			{
 				ShowBuildError("Maximum height is not a valid integer value greater than 0.");
 				return;
 			}
-			if (!int.TryParse(paddingTxtBox.Text, out padding) || padding < 0)
+			if (!int.TryParse(paddingTxtBox.Text, out int padding) || padding < 0)
 			{
 				ShowBuildError("Image padding is not a valid non-negative integer");
 				return;
@@ -348,10 +347,12 @@ namespace SpriteSheetPacker
 				}
 			}
 
-			// construct the arguments in a list so we can pass the array cleanly to sspack.Program.Launch()
-			List<string> args = new List<string>();
-			args.Add("/image:" + image);
-			if (generateMap)
+            // construct the arguments in a list so we can pass the array cleanly to sspack.Program.Launch()
+            List<string> args = new List<string>
+            {
+                "/image:" + image
+            };
+            if (generateMap)
 				args.Add("/map:" + map);
 			args.Add("/mw:" + mw);
 			args.Add("/mh:" + mh);
@@ -401,16 +402,15 @@ namespace SpriteSheetPacker
 
 		protected override void OnClosed(EventArgs e)
 		{
-			// get our UI values if they are valid
-			int outputWidth, outputHeight, padding;
+            // get our UI values if they are valid
 
-			if (int.TryParse(maxWidthTxtBox.Text, out outputWidth) && outputWidth > 0)
-				SpriteSheetPacker.Settings.Default.MaxWidth = outputWidth;
+            if (int.TryParse(maxWidthTxtBox.Text, out int outputWidth) && outputWidth > 0)
+                SpriteSheetPacker.Settings.Default.MaxWidth = outputWidth;
 
-			if (int.TryParse(maxHeightTxtBox.Text, out outputHeight) && outputHeight > 0)
+            if (int.TryParse(maxHeightTxtBox.Text, out int outputHeight) && outputHeight > 0)
 				SpriteSheetPacker.Settings.Default.MaxHeight = outputHeight;
 
-			if (int.TryParse(paddingTxtBox.Text, out padding) && padding >= 0)
+			if (int.TryParse(paddingTxtBox.Text, out int padding) && padding >= 0)
 				SpriteSheetPacker.Settings.Default.Padding = padding;
 
 			SpriteSheetPacker.Settings.Default.PowOf2 = powOf2CheckBox.Checked;

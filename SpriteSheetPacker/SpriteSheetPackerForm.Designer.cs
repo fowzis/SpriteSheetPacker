@@ -96,8 +96,8 @@ namespace SpriteSheetPacker
 			this.listBox1.Size = new System.Drawing.Size(683, 191);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.TabStop = false;
-			this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox1_DragDrop);
-			this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1_DragEnter);
+			this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox1_DragDrop);
+			this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox1_DragEnter);
 			// 
 			// removeImageBtn
 			// 
@@ -109,7 +109,7 @@ namespace SpriteSheetPacker
 			this.removeImageBtn.TabIndex = 6;
 			this.removeImageBtn.Text = "Remove Selected";
 			this.removeImageBtn.UseVisualStyleBackColor = true;
-			this.removeImageBtn.Click += new System.EventHandler(this.removeImageBtn_Click);
+			this.removeImageBtn.Click += new System.EventHandler(this.RemoveImageBtn_Click);
 			// 
 			// addImageBtn
 			// 
@@ -121,7 +121,7 @@ namespace SpriteSheetPacker
 			this.addImageBtn.TabIndex = 5;
 			this.addImageBtn.Text = "Add Images";
 			this.addImageBtn.UseVisualStyleBackColor = true;
-			this.addImageBtn.Click += new System.EventHandler(this.addImageBtn_Click);
+			this.addImageBtn.Click += new System.EventHandler(this.AddImageBtn_Click);
 			// 
 			// buildBtn
 			// 
@@ -133,7 +133,7 @@ namespace SpriteSheetPacker
 			this.buildBtn.TabIndex = 12;
 			this.buildBtn.Text = "Build Sprite Sheet";
 			this.buildBtn.UseVisualStyleBackColor = true;
-			this.buildBtn.Click += new System.EventHandler(this.buildBtn_Click);
+			this.buildBtn.Click += new System.EventHandler(this.BuildBtn_Click);
 			// 
 			// imageOpenFileDialog
 			// 
@@ -152,7 +152,7 @@ namespace SpriteSheetPacker
 			this.clearBtn.TabIndex = 7;
 			this.clearBtn.Text = "Remove All";
 			this.clearBtn.UseVisualStyleBackColor = true;
-			this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+			this.clearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
 			// 
 			// label1
 			// 
@@ -255,7 +255,7 @@ namespace SpriteSheetPacker
 			this.browseImageBtn.TabIndex = 9;
 			this.browseImageBtn.Text = "...";
 			this.browseImageBtn.UseVisualStyleBackColor = true;
-			this.browseImageBtn.Click += new System.EventHandler(this.browseImageBtn_Click);
+			this.browseImageBtn.Click += new System.EventHandler(this.BrowseImageBtn_Click);
 			// 
 			// label6
 			// 
@@ -287,7 +287,7 @@ namespace SpriteSheetPacker
 			this.browseMapBtn.TabIndex = 11;
 			this.browseMapBtn.Text = "...";
 			this.browseMapBtn.UseVisualStyleBackColor = true;
-			this.browseMapBtn.Click += new System.EventHandler(this.browseMapBtn_Click);
+			this.browseMapBtn.Click += new System.EventHandler(this.BrowseMapBtn_Click);
 			// 
 			// imageSaveFileDialog
 			// 
